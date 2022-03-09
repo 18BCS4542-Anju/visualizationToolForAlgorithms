@@ -1,0 +1,64 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.algorithmContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+}
+
+.rectangle {
+    width: 2rem;
+    height: 2rem;
+    background-color: rgb(187, 127, 127);
+    margin: 0.5rem;
+    padding: 2rem;
+    transition: all 0.5s;
+}
+.controlsContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 5rem;
+}
+
+.active {
+    background-color: aquamarine;
+    animation: zoomOut 0.5s ease-in forwards;
+    border-left: 3px solid black;
+}
+
+.swap {
+    background-color: bisque;
+    animation: zoomIn 0.5s ease-in forwards;
+}
+.swap::after {
+    background-color: bisque;
+}
+
+@keyframes zoomOut {
+    from {
+        transform: scale(0.7);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+@keyframes zoomIn {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(0.7);
+    }
+}
