@@ -1,0 +1,55 @@
+@use './modules/colors' as colors;
+@use './modules/mixins' as mixins;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+@import './modules/keyframes';
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    @include mixins.FlexContainerJustifyCenterAlignItemCenter(100%, 100%);
+    flex-direction: column;
+}
+
+.algorithmContainer {
+    @include mixins.FlexContainerJustifyCenterAlignItemCenter(100%, 100%);
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.rectangle {
+    @include mixins.Rectangle();
+}
+
+.controlsContainer {
+    @include mixins.FlexContainerJustifyCenterAlignItemCenter();
+    justify-content: space-evenly;
+    width: 50%;
+    margin-top: 5rem;
+
+    button {
+        padding: 1rem 0.5rem;
+        text-align: center;
+        background-color: maroon;
+        color: whitesmoke;
+        height: 5rem;
+        width: 5rem;
+        border-radius: 100%;
+    }
+}
+
+.active {
+    @include mixins.ActiveRectangles('active');
+}
+
+.swap {
+    @include mixins.ActiveRectangles('swap');
+}
+
+.sorted {
+    background-color: colors.$primary-box-bg;
+    color: colors.$text-dark;
+    border: none;
+    animation: none;
+}

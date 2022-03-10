@@ -68,7 +68,6 @@ const Alogrithm = ({
 
     return (
         <>
-            {JSON.stringify(currentSwappingValues, null, 2)}
             {data && (
                 <div className="algorithmContainer">
                     {data.map((item: number, index: number) => (

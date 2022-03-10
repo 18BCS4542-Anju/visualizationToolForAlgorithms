@@ -1,7 +1,7 @@
 import React from 'react';
 import Alogrithm from './Algorithm';
-import './index.scss';
 import { sortedStatusShape } from './types';
+import '../styles/index.scss';
 
 interface ControllerShape {
     speed: number;
