@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import SelectionSortWithController from './sortings/selection';
 
-const App = () => {
-    return (
-        <>
-            <SelectionSortWithController />
-        </>
-    );
+function App = ():ReactElement => {
+  return (
+    <>
+      <SelectionSortWithController />
+    </>
+  );
 };
 
 export default App;
