@@ -10,7 +10,7 @@
 .algorithmContainer {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     flex-wrap: wrap;
     width: 100%;
@@ -18,7 +18,6 @@
 }
 
 .rectangle {
-    width: 2rem;
     height: 2rem;
     background-color: rgb(187, 127, 127);
     margin: 0.5rem;

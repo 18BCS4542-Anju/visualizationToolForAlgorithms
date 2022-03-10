@@ -15,7 +15,7 @@ interface ArrayStatusShape {
 const SelectionSortWithController = () => {
     const [arrayStatus, setArrayStatus] = React.useState<ArrayStatusShape>({
         sorted: false,
-        data: Array.from({ length: 10 }, () => Math.floor(Math.random() * 10)),
+        data: Array.from({ length: 10 }, () => Math.floor(Math.random() * 200)),
     });
     const [controllers, setControllers] = React.useState<ControllerShape>({
         speed: 2000,
@@ -59,7 +59,7 @@ const SelectionSortWithController = () => {
                         setArrayStatus({
                             sorted: false,
                             data: Array.from({ length: controllers.size }, () =>
-                                Math.floor(Math.random() * 50)
+                                Math.floor(Math.random() * 200)
                             ),
                         })
                     }>
