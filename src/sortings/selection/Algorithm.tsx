@@ -25,16 +25,16 @@ function Alogrithm({
 
   const [minIndex, setMinIndex] = React.useState<number>(-1);
 
-  const swap = async (min: number, i: number) => {
+  const swap = async (j: number, i: number) => {
     await new Promise(() => {
       setTimeout(() => {
-        const temp = data[min];
-        data[min] = data[i];
+        const temp = data[j];
+        data[j] = data[i];
         data[i] = temp;
         setCurrentSwappingValues(() => ({
           ...currentSwappingValues,
           i: currentSwappingValues.i + 1,
-          swapValueIndex: min,
+          swapValueIndex: j,
         }));
       }, speed);
     });
@@ -47,8 +47,8 @@ function Alogrithm({
         min = j;
       }
     }
-    setMinIndex(minIndex);
-    swap(minIndex, currentSwappingValues.i);
+    setMinIndex(min);
+    swap(min, currentSwappingValues.i);
   };
 
   React.useEffect(() => {
@@ -71,7 +71,6 @@ function Alogrithm({
       <div className="algorithmContainer">
         {data.map((item: number, index: number) => (
           <span
-            key={item + Math.random()}
             className={getClassNames(
               index,
               currentSwappingValues.i,
