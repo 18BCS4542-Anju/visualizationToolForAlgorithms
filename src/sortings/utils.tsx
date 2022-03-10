@@ -1,6 +1,6 @@
 import { sortedStatusShape } from './selection/types';
 
-export const getClassNames = (
+const getClassNames = (
     index: number,
     currentIndex: number,
     swapIndex: number,
