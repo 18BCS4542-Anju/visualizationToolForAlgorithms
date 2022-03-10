@@ -1,0 +1,11 @@
+$primary-box-bg: #ffba08;
+$bg-dark: #032b43;
+$text-light: whitesmoke;
+$text-dark: #032b43;
+$secondary-box-bg: #d00000;
+$tertiary-box-bg: #136f63;
+
+@mixin dark-theme {
+    background-color: #032b43;
+    color: whitesmoke;
+}

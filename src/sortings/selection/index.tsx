@@ -1,6 +1,7 @@
 import React from 'react';
 import Alogrithm from './Algorithm';
-import './index.css';
+import './index.scss';
+import { sortedStatusShape } from './types';
 
 interface ControllerShape {
     speed: number;
@@ -8,17 +9,17 @@ interface ControllerShape {
 }
 
 interface ArrayStatusShape {
-    sorted: boolean;
+    sorted: sortedStatusShape;
     data: Array<number>;
 }
 
 const SelectionSortWithController = () => {
     const [arrayStatus, setArrayStatus] = React.useState<ArrayStatusShape>({
-        sorted: false,
+        sorted: 'NS',
         data: Array.from({ length: 10 }, () => Math.floor(Math.random() * 200)),
     });
     const [controllers, setControllers] = React.useState<ControllerShape>({
-        speed: 2000,
+        speed: 3000,
         size: 10,
     });
 
@@ -40,7 +41,7 @@ const SelectionSortWithController = () => {
                     onClick={() =>
                         setControllers({
                             ...controllers,
-                            speed: controllers.size / 2,
+                            speed: controllers.speed / 2,
                         })
                     }>
                     speed 2x
@@ -57,12 +58,13 @@ const SelectionSortWithController = () => {
                 <button
                     onClick={() =>
                         setArrayStatus({
-                            sorted: false,
+                            sorted: 'NS',
                             data: Array.from({ length: controllers.size }, () =>
                                 Math.floor(Math.random() * 200)
                             ),
                         })
-                    }>
+                    }
+                    disabled={arrayStatus.sorted === 'IP'}>
                     generate array with size {controllers.size}
                 </button>
             </section>
