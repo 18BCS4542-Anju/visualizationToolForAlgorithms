@@ -7,8 +7,8 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
+    name: vtfa lint
     steps:
-      - name: lint
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
