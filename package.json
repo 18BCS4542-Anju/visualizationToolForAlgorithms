@@ -13,6 +13,7 @@
 	"devDependencies": {
 		"@types/react": "^17.0.40",
 		"@types/react-dom": "^17.0.13",
+		"@types/uuid": "^8.3.4",
 		"@typescript-eslint/eslint-plugin": "^5.14.0",
 		"@typescript-eslint/parser": "^5.14.0",
 		"eslint": "^8.10.0",
@@ -30,10 +31,14 @@
 	"dependencies": {
 		"@snowpack/plugin-run-script": "^2.3.0",
 		"@snowpack/plugin-sass": "^1.4.0",
+		"@types/styled-components": "^5.1.24",
 		"prettier": "^2.5.1",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
-		"sass": "^1.49.9"
+		"react-is": "^17.0.2",
+		"sass": "^1.49.9",
+		"styled-components": "^5.3.3",
+		"uuid": "^8.3.2"
 	},
 	"packageManager": "yarn@3.2.0"
 }

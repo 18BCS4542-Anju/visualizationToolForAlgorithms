@@ -1,6 +1,37 @@
 import React from 'react';
-import { getClassNames } from '../utils';
+import styled, { css } from 'styled-components';
 import { AlogrithmShape } from './types';
+
+const AlogrithmContainer = styled.div`
+  display: flex;
+  flex-flow: wrap;
+`;
+
+type StyledBoxShape = {
+  readonly isActive: boolean;
+  readonly isMinimum: boolean;
+};
+
+const Box = styled.div<StyledBoxShape>`
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: ${(props) => props.theme.main['dark-accent']};
+  margin: 2px;
+  padding: 2rem;
+  border-radius: 10px;
+  color: ${(props) => props.theme.main['light-text']};
+  ${(props) =>
+    props.isActive &&
+    css`
+      background-color: ${(props) => props.theme.main['dark-accent-1']};
+    `};
+  ${(props) =>
+    props.isMinimum &&
+    css`
+      background-color: ${(props) => props.theme.main['light-accent']};
+      color: ${(props) => props.theme.main['dark-text']};
+    `};
+`;
 
 function Alogrithm({
   data,
@@ -56,26 +87,22 @@ function Alogrithm({
     }
     if (currentSwappingValues.i === data?.length) {
       updateSortedStatus('AS');
-      setCurrentSwappingValues({ i: 0, swapValueIndex: 0 });
+      setCurrentSwappingValues({ i: -1, swapValueIndex: 0 });
       setMinIndex(-1);
     }
   }, [currentSwappingValues, data]);
 
   return (
     data && (
-      <div className="algorithmContainer">
-        {data.map((item: number, index: number) => (
-          <span
-            className={getClassNames(
-              index,
-              currentSwappingValues.i,
-              minIndex,
-              sorted,
-            )}>
+      <AlogrithmContainer>
+        {data.map((item, index) => (
+          <Box
+            isActive={index === currentSwappingValues.i}
+            isMinimum={index === minIndex}>
             {item}
-          </span>
+          </Box>
         ))}
-      </div>
+      </AlogrithmContainer>
     )
   );
 }

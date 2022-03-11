@@ -25,41 +25,6 @@ function SelectionSortWithController() {
           setArrayStatus({ ...arrayStatus, sorted })
         }
       />
-      <section className="controlsContainer">
-        <button
-          type="button"
-          onClick={() =>
-            setControllers({
-              ...controllers,
-              speed: controllers.speed / 2,
-            })
-          }>
-          speed 2x
-        </button>
-        <button
-          type="button"
-          onClick={() =>
-            setControllers({
-              ...controllers,
-              size: controllers.size + 5,
-            })
-          }>
-          size + 5
-        </button>
-        <button
-          type="button"
-          onClick={() =>
-            setArrayStatus({
-              sorted: 'NS',
-              data: Array.from({ length: controllers.size }, () =>
-                Math.floor(Math.random() * 200),
-              ),
-            })
-          }
-          disabled={arrayStatus.sorted === 'IP'}>
-          generate array with size {controllers.size}
-        </button>
-      </section>
     </div>
   );
 }
