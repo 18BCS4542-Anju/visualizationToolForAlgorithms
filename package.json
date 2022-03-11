@@ -7,7 +7,7 @@
 	"scripts": {
 		"dev": "snowpack dev",
 		"build": "yarn lint && snowpack build",
-		"lint": "eslint '**/*.tsx' --ignore-pattern node_modules/",
+		"lint": "eslint --ext .js,.ts,.tsx .",
 		"lint:fix": "eslint '**/*.tsx' --fix --ignore-pattern node_modules/"
 	},
 	"devDependencies": {

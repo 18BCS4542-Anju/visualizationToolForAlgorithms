@@ -7,7 +7,6 @@ export const getClassNames = (
   sortStatus: sortedStatusShape,
 ): string => {
   const className: Array<string> = ['rectangle'];
-
   if (index === currentIndex && sortStatus === 'IP') {
     className.push('active');
   } else if (index < currentIndex) {

@@ -1,19 +1,14 @@
 import React from 'react';
 import { getClassNames } from '../utils';
-import { sortedStatusShape } from './types';
-
-interface AlogrithmShape {
-  data: Array<number>;
-  sorted: sortedStatusShape;
-  speed: number;
-  updateSortedStatus: Function;
-}
+import { AlogrithmShape } from './types';
 
 function Alogrithm({
   data,
   sorted,
   speed,
-  updateSortedStatus = () => {},
+  updateSortedStatus = () => {
+    // do nothing
+  },
 }: AlogrithmShape) {
   const [currentSwappingValues, setCurrentSwappingValues] = React.useState<{
     i: number;

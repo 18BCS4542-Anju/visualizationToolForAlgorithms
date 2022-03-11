@@ -1,17 +1,7 @@
 import React from 'react';
 import Alogrithm from './Algorithm';
-import { sortedStatusShape } from './types';
+import { ArrayStatusShape, ControllerShape, sortedStatusShape } from './types';
 import '../styles/index.scss';
-
-interface ControllerShape {
-  speed: number;
-  size: number;
-}
-
-interface ArrayStatusShape {
-  sorted: sortedStatusShape;
-  data: Array<number>;
-}
 
 function SelectionSortWithController() {
   const [arrayStatus, setArrayStatus] = React.useState<ArrayStatusShape>({

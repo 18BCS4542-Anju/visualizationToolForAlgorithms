@@ -5,6 +5,17 @@ on:
     branches: ['main', 'dev']
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: lint
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - uses: Borales/actions-yarn@v2.3.0
+        with:
+          cmd: lint
   build:
     name: vtfa build
     runs-on: ubuntu-latest
