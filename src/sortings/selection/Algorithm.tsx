@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { AlogrithmShape } from './types';
-
+import { v4 as generateUniqueId } from 'uuid';
 const AlogrithmContainer = styled.div`
   display: flex;
   flex-flow: wrap;
@@ -97,6 +97,7 @@ function Alogrithm({
       <AlogrithmContainer>
         {data.map((item, index) => (
           <Box
+            key={generateUniqueId()}
             isActive={index === currentSwappingValues.i}
             isMinimum={index === minIndex}>
             {item}
