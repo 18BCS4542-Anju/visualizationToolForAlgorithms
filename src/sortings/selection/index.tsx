@@ -1,7 +1,35 @@
 import React from 'react';
+import styled from 'styled-components';
 import Alogrithm from './Algorithm';
 import { ArrayStatusShape, ControllerShape, sortedStatusShape } from './types';
-import '../styles/index.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faFastForward,
+  faPlus,
+  faRotateRight,
+} from '@fortawesome/free-solid-svg-icons';
+
+const AlogrithmContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Controls = styled.button`
+  padding: 1rem 2.625rem;
+  background-color: ${(props) => props.theme.main['dark-accent']};
+  border: none;
+  border-radius: 0.5rem;
+  color: ${(props) => props.theme.main['light-accent']};
+  margin: 1rem;
+  &:disabled {
+    background-color: ${(props) => props.theme.main['light-accent']};
+    color: ${(props) => props.theme.main['dark-text']};
+    opacity: 0.2;
+    cursor: not-allowed;
+  }
+`;
 
 function SelectionSortWithController() {
   const [arrayStatus, setArrayStatus] = React.useState<ArrayStatusShape>({
@@ -14,7 +42,7 @@ function SelectionSortWithController() {
   });
 
   return (
-    <div className="container">
+    <AlogrithmContainer>
       <h1>SelectionSort</h1>
       <h4>Sorted :{arrayStatus.sorted.toString()}</h4>
       <Alogrithm
@@ -25,29 +53,34 @@ function SelectionSortWithController() {
           setArrayStatus({ ...arrayStatus, sorted })
         }
       />
-      <section className="controlsContainer">
-        <button
-          type="button"
+      <div
+        style={{
+          height: '40%',
+          margin: '1.5rem',
+        }}>
+        <Controls
+          aria-label="speed"
           onClick={() =>
-            setControllers({
-              ...controllers,
-              speed: controllers.speed / 2,
-            })
+            setControllers((prevState) => ({
+              ...prevState,
+              speed: prevState.speed / 2,
+            }))
           }>
-          speed 2x
-        </button>
-        <button
-          type="button"
+          <FontAwesomeIcon icon={faFastForward} />
+        </Controls>
+        <Controls
+          aria-label="size"
           onClick={() =>
-            setControllers({
-              ...controllers,
-              size: controllers.size + 5,
-            })
+            setControllers((prevState) => ({
+              ...prevState,
+              size: prevState.size + 10,
+            }))
           }>
-          size + 5
-        </button>
-        <button
-          type="button"
+          <FontAwesomeIcon icon={faPlus} />
+        </Controls>
+        <Controls
+          aria-label="reset"
+          disabled={arrayStatus.sorted !== 'AS'}
           onClick={() =>
             setArrayStatus({
               sorted: 'NS',
@@ -55,12 +88,11 @@ function SelectionSortWithController() {
                 Math.floor(Math.random() * 200),
               ),
             })
-          }
-          disabled={arrayStatus.sorted === 'IP'}>
-          generate array with size {controllers.size}
-        </button>
-      </section>
-    </div>
+          }>
+          <FontAwesomeIcon icon={faRotateRight} />
+        </Controls>
+      </div>
+    </AlogrithmContainer>
   );
 }
 
