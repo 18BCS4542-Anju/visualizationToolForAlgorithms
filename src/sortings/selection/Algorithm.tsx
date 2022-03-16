@@ -2,9 +2,13 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { AlogrithmShape } from './types';
 import { v4 as generateUniqueId } from 'uuid';
+import { useSpring, animated } from 'react-spring';
+
 const AlogrithmContainer = styled.div`
   display: flex;
   flex-flow: wrap;
+  justify-content: center;
+  align-items: center;
 `;
 
 type StyledBoxShape = {
@@ -12,7 +16,7 @@ type StyledBoxShape = {
   readonly isMinimum: boolean;
 };
 
-const Box = styled.div<StyledBoxShape>`
+const Box = styled(animated.div)<StyledBoxShape>`
   width: 1.5rem;
   height: 1.5rem;
   background-color: ${(props) => props.theme.main['dark-accent']};
@@ -49,7 +53,10 @@ function Alogrithm({
     swapValueIndex: 0,
   });
 
+  const [alreadySorted, markSorted] = React.useState<Array<number>>([]);
+
   const [minIndex, setMinIndex] = React.useState<number>(-1);
+  const swapRef = React.useRef<HTMLDivElement>(null);
 
   const swap = async (j: number, i: number) => {
     await new Promise(() => {
@@ -66,7 +73,7 @@ function Alogrithm({
     });
   };
 
-  const findMinimum = () => {
+  const findMinimum = async () => {
     let min = currentSwappingValues.i;
     for (let j = currentSwappingValues.i + 1; j < data?.length; j += 1) {
       if (data[j] > data[min]) {
@@ -74,7 +81,8 @@ function Alogrithm({
       }
     }
     setMinIndex(min);
-    swap(min, currentSwappingValues.i);
+
+    await swap(min, currentSwappingValues.i);
   };
 
   React.useEffect(() => {
@@ -82,8 +90,7 @@ function Alogrithm({
       (sorted === 'NS' || sorted === 'IP') &&
       currentSwappingValues.i < data?.length
     ) {
-      updateSortedStatus('IP');
-      findMinimum();
+      findMinimum().then(() => updateSortedStatus('IP'));
     }
     if (currentSwappingValues.i === data?.length) {
       updateSortedStatus('AS');
@@ -92,11 +99,24 @@ function Alogrithm({
     }
   }, [currentSwappingValues, data]);
 
+  console.log(swapRef?.current?.innerText);
   return (
     data && (
       <AlogrithmContainer>
         {data.map((item, index) => (
           <Box
+            ref={(el) => {
+              // el can be null - see https://reactjs.org/docs/refs-and-the-dom.html#caveats-with-callback-refs
+              if (!el) return;
+
+              if (
+                index === currentSwappingValues.i &&
+                !alreadySorted.includes(data[index])
+              ) {
+                console.log(el.getBoundingClientRect().left, el.innerText); // prints 200px
+                markSorted((prevState) => [...prevState, data[index]]);
+              }
+            }}
             key={generateUniqueId()}
             isActive={index === currentSwappingValues.i}
             isMinimum={index === minIndex}>

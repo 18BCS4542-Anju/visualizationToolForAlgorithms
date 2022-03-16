@@ -35,6 +35,9 @@ const MainContainer = styled.div`
   height: 100vh;
   background-color: ${(props) => props.theme.main['main-background']};
   color: ${(props) => props.theme.main['main-text']};
+  justify-content: center;
+  transition: background-color 0.5s ease;
+  overflow: auto;
 `;
 
 function App(): ReactElement {
@@ -43,7 +46,16 @@ function App(): ReactElement {
   return (
     <ThemeProvider theme={darkThemeStatus ? darkTheme : lightTheme}>
       <MainContainer>
-        <Switch active={darkThemeStatus} handleOnChange={toggleDarkTheme} />
+        <div style={{ padding: '2rem' }}>
+          <Switch
+            active={darkThemeStatus}
+            handleOnChange={toggleDarkTheme}
+            dimensions={{
+              trackWidth: '50px',
+              trackHeight: '20px',
+            }}
+          />
+        </div>
         <SelectionSortWithController />
       </MainContainer>
     </ThemeProvider>
