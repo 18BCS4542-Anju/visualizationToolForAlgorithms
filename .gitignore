@@ -1,4 +1,7 @@
 /node_modules
 build
-.yarn/
 .vscode/
+.yarn/cache
+.yarn/sdks
+.yarn/unplugged
+.yarn/install-state.gz
