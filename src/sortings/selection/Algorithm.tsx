@@ -1,8 +1,8 @@
 import React from 'react';
+import { animated } from 'react-spring';
 import styled, { css } from 'styled-components';
-import { AlogrithmShape } from './types';
 import { v4 as generateUniqueId } from 'uuid';
-import { useSpring, animated } from 'react-spring';
+import { AlogrithmShape } from './types';
 
 const AlogrithmContainer = styled.div`
   display: flex;
